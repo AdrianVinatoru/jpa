@@ -28,30 +28,3 @@ Step 2:Create role postgres :CREATE USER postgres WITH SUPERUSER PASSWORD 'passw
 Step 3:Connect to PostgreSQL server from pgadmin4
 
 **********************************************************************************************
-
-PostgreSQl instruction for creating users table used in this application:
-
--- Table: public.users
-
--- DROP TABLE public.users;
-
-CREATE TABLE public.users
-(
-    id integer NOT NULL,
-    name text COLLATE pg_catalog."default" NOT NULL,
-    phone_number text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT users_pkey PRIMARY KEY (id)
-)
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
-
-ALTER TABLE public.users
-    OWNER to postgres;
-**********************************************************************************************
-    
-After creating this table please use this instruction for auto-incrementing the id 
-for the user table:
-    CREATE SEQUENCE users_id_seq;
-    ALTER SEQUENCE users_id_seq OWNED BY users.id;
