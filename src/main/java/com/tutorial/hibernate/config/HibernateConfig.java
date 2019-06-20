@@ -1,5 +1,7 @@
 package com.tutorial.hibernate.config;
 
+import com.tutorial.hibernate.entitites.AccountEntity;
+import com.tutorial.hibernate.entitites.EmployeeEntity;
 import com.tutorial.hibernate.entitites.UserEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -31,6 +33,8 @@ public class HibernateConfig {
 
                 //Set entities in  hibernate
                 configuration.addAnnotatedClass(UserEntity.class);
+                configuration.addAnnotatedClass(AccountEntity.class);
+                configuration.addAnnotatedClass(EmployeeEntity.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

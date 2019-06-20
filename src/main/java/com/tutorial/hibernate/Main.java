@@ -5,7 +5,6 @@ import com.tutorial.hibernate.service.UserService;
 import com.tutorial.hibernate.service.impl.UserServiceImpl;
 
 import java.util.List;
-import java.util.UUID;
 
 public class Main {
 
@@ -30,8 +29,8 @@ public class Main {
 
         UserEntity userEntity = new UserEntity();
 
-        userEntity.setName(UUID.randomUUID().toString());
-        userEntity.setPhoneNumber(UUID.randomUUID().toString());
+        userEntity.setName("demo-user-name");
+        userEntity.setPhoneNumber("000-000-000");
 
         return userEntity;
     }

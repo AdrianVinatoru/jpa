@@ -7,13 +7,8 @@ import java.io.Serializable;
 @Table(name = "users")
 public class UserEntity implements Serializable {
 
-    //Execute this on PostgreSQL database so that the id can be auto incremented
-    //CREATE SEQUENCE users_id_seq;
-    //ALTER SEQUENCE users_id_seq OWNED BY users.id;
-
     @Id
-    @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "users_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
