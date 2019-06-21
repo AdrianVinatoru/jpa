@@ -29,8 +29,8 @@ public class Main {
 
         UserEntity userEntity = new UserEntity();
 
-        userEntity.setName("demo-user-name");
-        userEntity.setPhoneNumber("000-000-000");
+        userEntity.setName("demo-user-name-2");
+        userEntity.setPhoneNumber("000-000-000-0002");
 
         return userEntity;
     }

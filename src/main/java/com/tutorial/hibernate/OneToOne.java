@@ -31,7 +31,6 @@ public class OneToOne {
         EmployeeEntity emp = new EmployeeEntity();
         emp.setName("demo-user");
         emp.setAccount(account);
-        emp.setAccount(account);
         session.saveOrUpdate(emp);
 
         session.getTransaction().commit();
