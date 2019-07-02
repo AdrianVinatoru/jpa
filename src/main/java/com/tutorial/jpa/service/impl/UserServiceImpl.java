@@ -32,18 +32,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(int userId) {
-        //@todo:implementation will follow
+        userDao.deleteUser(userId);
     }
 
     @Override
     public UserEntity updateUser(UserEntity userEntity) {
-        //@todo:implementation will follow
-        return null;
+        return userDao.updateUser(userEntity);
     }
 
     @Override
     public UserEntity findUserById(int userId) {
-        //@todo:implementation will follow
-        return null;
+        return userDao.findUserById(userId);
     }
 }

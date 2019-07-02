@@ -9,7 +9,8 @@ import java.io.Serializable;
 @NamedQueries(
         {
                 @NamedQuery(query = "Select u from UserEntity u where u.id = :id", name = "find UserEntity by id"),
-                @NamedQuery(query = "Select u from UserEntity u where u.name = :name", name = "find UserEntity by name")
+                @NamedQuery(query = "Select u from UserEntity u where u.name = :name", name = "find UserEntity by name"),
+                @NamedQuery(query = "UPDATE UserEntity u SET u.name=:name where u.id = :id", name = "update UserEntity by id")
         }
 )
 public class UserEntity implements Serializable {

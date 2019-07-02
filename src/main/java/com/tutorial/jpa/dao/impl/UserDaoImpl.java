@@ -1,14 +1,14 @@
 package com.tutorial.jpa.dao.impl;
 
-import com.tutorial.jpa.config.DbConfig;
-import com.tutorial.jpa.dao.UserDao;
-import com.tutorial.jpa.entitites.UserEntity;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import com.tutorial.jpa.config.DbConfig;
+import com.tutorial.jpa.dao.UserDao;
+import com.tutorial.jpa.entitites.UserEntity;
 
 public class UserDaoImpl implements UserDao {
 
@@ -81,18 +81,63 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void deleteUser(int userId) {
-        //@todo:implementation will follow
+        EntityManager entityManager = DbConfig.getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        try {
+            Query deleteQuery = entityManager.createNativeQuery("DELETE FROM public.users WHERE id = " + userId);
+            deleteQuery.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not delete user with id: " + userId, e);
+        } finally {
+            entityManager.clear();
+            entityManager.close();
+        }
     }
 
     @Override
     public UserEntity updateUser(UserEntity userEntity) {
-        //@todo:implementation will follow
-        return null;
+        EntityManager entityManager = DbConfig.getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        try {
+
+            Query updateQuery = entityManager.createNamedQuery("update UserEntity by id");
+            updateQuery.setParameter("name", "IONUT23").
+                    setParameter("id", userEntity.getId()).
+                    executeUpdate();
+
+            transaction.commit();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not delete user with id: " + userEntity.getId(), e);
+        } finally {
+            entityManager.clear();
+            entityManager.close();
+        }
+
+        return userEntity;
     }
 
     @Override
     public UserEntity findUserById(int userId) {
-        //@todo:implementation will follow
-        return null;
+        UserEntity user = null;
+        EntityManager entityManager = DbConfig.getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        try {
+            Query namedQuery = entityManager.createNamedQuery("find UserEntity by id");
+            namedQuery.setParameter("id", userId);
+            user = (UserEntity) namedQuery.getSingleResult();
+            transaction.commit();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not find any user", e);
+
+        } finally {
+            entityManager.clear();
+            entityManager.close();
+        }
+
+        return user;
     }
 }

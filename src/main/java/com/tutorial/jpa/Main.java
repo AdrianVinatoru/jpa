@@ -13,12 +13,15 @@ public class Main {
 
         UserService userService = new UserServiceImpl();
 
+        int lastId = userService.findAllUsers().size();
+
+
         UserEntity userEntity = new UserEntity();
-        userEntity.setName("stefan.alexandru.seulean");
+        userEntity.setName("Adrian " + ++lastId);
         userEntity.setPhoneNumber("0722274812");
 
-        UserEntity savedUser = userService.saveUser(userEntity);
-        System.out.println("User saved in database" + savedUser);
+   /*     UserEntity savedUser = userService.saveUser(userEntity);
+        System.out.println("User saved in database" + savedUser);*/
 
         List<UserEntity> userEntityList = userService.findAllUsers();
 
@@ -27,5 +30,10 @@ public class Main {
         List<UserEntity> userEntitiesFromNamedQuery = userService.findAllUsersByName();
         System.out.println("User result from named query: " + userEntitiesFromNamedQuery);
 
+        userService.deleteUser(32);
+        userService.deleteUser(33);
+
+        UserEntity userEntity1 = userService.findUserById(34);
+        userService.updateUser(userEntity1);
     }
 }
