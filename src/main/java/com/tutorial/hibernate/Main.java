@@ -1,37 +1,48 @@
 package com.tutorial.hibernate;
 
+import java.util.List;
+
 import com.tutorial.hibernate.entitites.UserEntity;
 import com.tutorial.hibernate.service.UserService;
 import com.tutorial.hibernate.service.impl.UserServiceImpl;
 
-import java.util.List;
-
 public class Main {
 
-    public static void main(String args[]) {
-
+    public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
 
-        UserEntity userEntity = createTestUser();
-
-        //Save a new user using Hibernate framework
-        userService.saveUser(userEntity);
-
-        //Get all the users from the database
         List<UserEntity> users = userService.getUsers();
+        int size = users.size();
+        int nextIndex = size == 0 ? 1 : users.get(size - 1).getId() + 1;
 
-        //Display data from the database to check the execution of the save and get users methods
-        System.out.println("Total users in the database: " + users.size());
-        System.out.println("Current users in the database: " + users);
+        // Create new user
+        UserEntity user = createNewUser(nextIndex);
+        userService.saveUser(user);
+
+        // Print number of users
+        System.out.println("Number of Users in db: " + ++size);
+
+        // Print the updated list of users
+        users = userService.getUsers();
+        printAllUsers(users);
+
+        //Print a user by a specific id
+        System.out.println("User with id " + size + " : " + userService.getUserById(nextIndex));
+
+        int ind = size - 1;
+        userService.updateUser(users.get(ind), "Updated Name");
+        System.out.println("User updated with id " + ind + " : " + userService.getUserById(ind));
     }
 
-    private static UserEntity createTestUser() {
 
-        UserEntity userEntity = new UserEntity();
+    private static UserEntity createNewUser(int index) {
+        UserService userService = new UserServiceImpl();
 
-        userEntity.setName("demo-user-name-2");
-        userEntity.setPhoneNumber("000-000-000-0002");
+        return new UserEntity("Adrian Vinatoru " + index, "074000000" + index);
+    }
 
-        return userEntity;
+    private static void printAllUsers(List<UserEntity> users) {
+        users.stream()
+                .forEach(user -> System.out.println(user));
     }
 }

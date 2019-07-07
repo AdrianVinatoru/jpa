@@ -29,6 +29,7 @@ public class HibernateConfig {
                 settings.put(Environment.PASS, "postgres");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
                 settings.put(Environment.SHOW_SQL, "true");
+                settings.put(Environment.ENABLE_LAZY_LOAD_NO_TRANS, "true");
                 configuration.setProperties(settings);
 
                 //Set entities in  hibernate

@@ -18,6 +18,14 @@ public class UserEntity implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    public UserEntity() {
+    }
+
+    public UserEntity(String name, String phoneNumber) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getId() {
         return id;
     }

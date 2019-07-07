@@ -10,7 +10,7 @@ public interface UserService {
 
     List<UserEntity> getUsers();
 
-    void updateUser(UserEntity userEntity);
+    void updateUser(UserEntity userEntity, String updatedName);
 
     UserEntity getUserById(int id);
 

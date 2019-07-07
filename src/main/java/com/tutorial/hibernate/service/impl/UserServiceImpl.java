@@ -27,18 +27,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(UserEntity userEntity) {
-        //@todo:implement this method as an exercise
+    public void updateUser(UserEntity userEntity, String updatedName) {
+        userDao.updateUser(userEntity, updatedName);
     }
 
     @Override
     public UserEntity getUserById(int id) {
-        //@todo:implement this method as an exercise
-        return null;
+        return userDao.getUserById(id);
     }
 
     @Override
     public void deleteUser(int userId) {
-        //@todo:implement this method as an exercise
+        userDao.deleteUser(userId);
     }
 }

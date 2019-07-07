@@ -10,9 +10,9 @@ public interface UserDao {
 
     List<UserEntity> findUsers();
 
-    void updateUser(UserEntity userEntity);
-
     UserEntity getUserById(int id);
 
     void deleteUser(int userId);
+
+    void updateUser(UserEntity userEntity, String updatedName);
 }
